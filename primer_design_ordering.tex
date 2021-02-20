@@ -1,0 +1,83 @@
+\documentclass[a4paper,12pt,twoside]{book}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+ \usepackage{lipsum}% http://ctan.org/pkg/lipsum
+ \usepackage{fancyhdr}% http://ctan.org/pkg/fancyhdr
+ \fancyhf{}% Clear all headers/footers
+ \renewcommand{\headrulewidth}{0pt}% No header rule
+ \renewcommand{\footrulewidth}{0pt}% No footer rule
+ \fancyhead[R]{{\em written 2/28/2017 V.Farrar \\ updated 2/25/2019}}%
+\pagestyle{empty}
+\setlength{\headheight}{50pt} 
+\usepackage{geometry}
+\geometry{letterpaper, portrait, margin=1in}
+
+\begin{document}
+	\thispagestyle{fancy}%
+\section*{Primer design and ordering (ROPI)}
+ \subsection*{Purpose:}
+To design and order primers for gene expression analysis via qPCR, specifically for pigeons.
+
+\subsection*{Requirements:}
+You will need access to the following:
+
+\begin{itemize}
+	\item \href{https://www.ncbi.nlm.nih.gov/ncbisearch/}{NCBI search website} 
+	\item \href{https://blast.ncbi.nlm.nih.gov/Blast.cgi}{Primer-BLAST website} 
+	\item Text-editing software, e.g.  \href{https://notepad-plus-plus.org/}{Notepad ++} or  \href{https://www.sublimetext.com/}{Sublime text} 
+\end{itemize}
+ \subsection*{Instructions:}
+\begin{enumerate}
+	\item {\bf Find the gene of interest on NCBI.} Navigate to NCBI search within the Nucleotide database. 
+	\begin{enumerate}
+		\item Search for your gene (type something like "gene/receptor name species name", e.g. {\em "glucocorticoid receptor Columba livia"})
+		\item Filter by Molecule\textgreater mRNA on the lefthand panel. (No DNA or proteins wanted here)
+		\item Look for sequences that say "complete cds" - these are the complete coding region, and usually come from sequencing experiments. "PREDICTED:" sequences are those predicted from genome annotations (but since the pigeon genome is well annotated, are still ok to use). 
+		\item Select your desired sequence. On the right panel, under "Analyze this sequence", select "Pick primers". This will send you to \href{https://www.ncbi.nlm.nih.gov/tools/primer-blast/}{Primer-BLAST}. 
+	\end{enumerate}
+\item {\bf Design primers.}  The accession number of your gene of interest should already be in the query box. 
+\begin{enumerate}
+	\item {\bf Primer length.} Under "Primer Parameters \textgreater PCR Product Size", set the "Min" to 60 and the "Max" to 180. 
+	\subitem This is the number of base pairs we want to include in our amplified gene region. qPCR primers need to be short so they will amplify completely during cycles, but not too short that they risk being nonspecific. 
+	\item {\bf Primer melting temperature.} Under "Primer Parameters \textgreater Primer melting temperatures", set the "Min" to 58 and the "Max" to 62. The default optimum, 60, is good.  
+	\subitem This is the temperature at which the primers melt, and we want this to be relatively consistent across primer sets so we can run multiple genes on the same plate.
+	\item {\bf Check specificity.} Under "Primer Pair Specificity Checking Parameters \textgreater Database", make sure it says "RefSeq mRNA". Under organism, list "Columba livia" and add another organims for "Homo sapiens". 
+	\subitem We want to check if this primer will bind other, nonspecific genes in pigeons, and make sure it binds NO genes in human DNA (risks contamination!)
+	\item {\bf GC content.}Underneath the "Get Primers" button, select "Advanced parameters". Under "Primer GC content", set the Min to 45 and the Max to 65. 
+	\subitem Controlling the GC content of our primer helps regulate the annealing temperature, and also influences the specificity of the primer to bind the right gene. 45 - 60 percent is the ideal range for qPCR primers. 
+	\item{\bf Set complementarity limits.} Under both "Max Pair Complementarity" and "Max Self Complementarity", set the Any value to 5.0 and the 3' to 2.0 . 
+	\subitem Complementarity is the likelihood of the primer to bind to itself (Self) or the forward/reverse primer (Pair). We want primers that bind only genes, not other primers! So, the lower these numbers, the less likely they will bind other primers or themselves.
+	\item Now, press "Get Primers"! 
+\end{enumerate} 
+\item {\bf Evaluate primer results.}
+\begin{enumerate}
+	\item 	The graphical view of primer pairs shows where each primer pair sits down on the conserved sequence, as well as how long the product amplicon is. 
+	\item 	For each primer pair, there is a list of "Primers on Intended Target" and "Products on potentially unintended targets".  We want to use primers with minimal products on unintended targets. 
+	\item Look at the "Self complementarity" and "Self 3' complementarity" scores on the right hand of each primer pair.
+	\subitem These scores range from 0 -5 by our settings, and the higher the scores, the more likely the primer is to bind itself to create double-stranded DNA fragments. Since we're using SYBR green dye, which binds double stranded DNA, we do not want this! Choose the primer pairs with the lowest scores but still reasonable melting temperatures or product lengths. If you must decide, it is better to have lower 3' complementarity score, but try to choose low scores overall. You can also change the settings on Primer BLAST to be more stringent.
+	\item Record the primer information for the best primer pair out of the 10 produced. Store info in a location you can easily copy and paste from when ordering primers. Include details about gene target and product length (important during validation). Save your search results as a PDF file.  
+	\subitem {\bf Note:} For pigeons, we are recording primer information on the "ROPI qPCR primer list" sheet in the Calisi lab Google Drive \textgreater qPCR folder. 
+\end{enumerate}
+\pagebreak
+\item {\bf Purchase primers via VetMed.}
+\begin{enumerate}
+	\item Once you have designed your primers, you can order them on AggieBuy.
+	\item  Login using your UC Davis email account. (You may need to get access to AggieBuy, if you don't have access, ask Rechelle)
+	\item  Go to Punch Out > Choose Vendor. 
+	\item Select Invitrogen or Eurofins as the oligo vendor.Press Enter.  
+	\item Select "DNA & RNA Oligonucleotides" > Custom Oligos in Tubes. 
+	\item Name your primer with the following format: {\em species code\textunderscore gene abbreviation \textunderscore F or R}
+	\subitem e.g. ROPI\textunderscore GNIH\textunderscore F  refers to rock pigeon gonadotropin inhibitory hormone, forward primer  
+	\item Copy and paste the primer sequence. {\em Check and double check} that your sequences match those from your BLAST results and that you put in the forward sequnece for the forward primer,etc.  
+	\item For Scale, select 25 nmole.  
+	\item No 5' modifications are needed for most primers (do not select anything from the drop-down menu)  
+	\item  Purification is "Desalted" by default, leave it this way. Press "Add to Oligo Order". Primer should appear in a list on the next page. 
+	\item Select "Add additional oligo to order" until you are finished. Check that all primers have unique names and each gene has a forward and reverse primer {\em with different sequences}.
+	\subitem Then, click "Checkout" to order. Select "Deliver to my lab" under delivery methods.  
+	\item You should recieve an email from VMCS with the details of your order. Save this email in your lab notebook for your records.  	
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

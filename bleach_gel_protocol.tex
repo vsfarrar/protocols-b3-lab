@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt,twoside]{book}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+ \usepackage{lipsum}% http://ctan.org/pkg/lipsum
+ \usepackage{fancyhdr}% http://ctan.org/pkg/fancyhdr
+ \fancyhf{}% Clear all headers/footers
+ \renewcommand{\headrulewidth}{0pt}% No header rule
+ \renewcommand{\footrulewidth}{0pt}% No footer rule
+ \fancyhead[R]{{\em updated 7/17/2017 VF}}%
+\pagestyle{empty}
+
+\begin{document}
+	\thispagestyle{fancy}%
+\section*{RNA Quality Assessment: Bleach gel}
+ \subsection*{Purpose:}
+To assess quality of extracted RNAs, by examining for fragmented or shearing. Equivalent of a genomic DNA gel, except bleach helps degrade RNases in gel. Nanodrop quantification gives metrics of purity (260/280 and 260/230 ratios) and concentration, but not general quality. 
+\\
+\\Protocol modified from Aranda et al (2012) {\em Electrophoresis}
+\subsection*{Reagents:}
+In addition to regular gel requirements...
+\begin{itemize}
+	\item TAE 1X gel buffer solution
+	\item Bleach (standard household)
+\end{itemize}
+ \subsection*{Instructions:}
+\begin{enumerate}
+	\item Mix 1 percent agarose with TAE 1X buffer. (e.g. 1 g agarose to 100 mL TAE buffer)
+	\item To each 100 mL of gel volume, add 1000 uL of bleach using a pipette. 
+	\item Swirl and heat gel mixture in the microwave as per usual protocol. 
+	\item Add EtBR, pour,  set combs and let cool as per standard gel protocol. 
+	\item To prepare RNA for loading, pipette out 6 uL of RNA onto a labeled sheet of parafilm. {em\ Keep RNA stocks cool during this step.} Add 1 uL 6X loading dye to each 6 uL RNA. Load 7 uL into gel combs. 
+	\item Run for 100 Volts for 35 minutes. 
+	\item {\bf Interpretation:}
+	You should be able to see two (ideally, three) distict bands on your gel after running. The top band (~ 4000 bp) corresponds to 28S rRNA, while lower band (~2000 bp) corresponds to 18S rRNA. Much below, around 150 bp, is 5S rRNA. 5S rRNA tends to be more faint and "blurred" of a band. If all three bands are distnctly seen, then RNA is of high quality. Smudges and streaks suggest RNA degredation. Glowing wells suggest gDNA contamination.  
+	
+	
+\end{enumerate}
+
+\end{document}
